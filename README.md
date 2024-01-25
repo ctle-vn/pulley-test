@@ -14,7 +14,7 @@ Your task is to fix the underlying code to make the failing tests in the app pas
 
 <img width="404" alt="image" src="https://github.com/ProlificLabs/shakesearch/assets/98766735/9a5b96b5-0e44-42e1-8d6e-b7a9e08df9a1">
 
-*** 
+---
 
 **Do not open a pull request or fork the repo**. Use these steps to create a hard copy.
 
@@ -24,7 +24,6 @@ Your task is to fix the underlying code to make the failing tests in the app pas
 4. Email us back with a link to your copy of the repo
 
 ## Running the App Locally
-
 
 This command runs the app on your machine and will be available in browser at localhost:3001.
 
@@ -45,3 +44,25 @@ make test
 ```
 
 Good luck!
+
+## Test Fixes:
+
+### Backend:
+
+1. Case Sensitive: Search function was case sensitive, which failed the test case since the text did not match the exactly.
+
+Fix: Modified the Load function to convert the complete works to lowercase when loading the file. The search query is also converted to lowercase in the Search function.
+
+2. Too many results: The search returned too many results, in TestSearchDrunk case.
+
+Fix: Implemented a limitResults function to restrict the number of results to a maximum of 20, addressing the specific test case requirements.
+
+### Frontend:
+
+1. Problem: The test case 'should return search results for "romeo, wherefore art thou"' was not passing.
+
+Fix: This issue was addressed by modifying the backend Go code. The change ensured that the search functionality could correctly handle and return results for specific queries like "romeo, wherefore art thou".
+
+2. Problem: The test 'should load more results for "horse" when clicking "Load More"' was failing.
+
+Fix: Resolved by updating the Go backend to support a new page query parameter, thereby enabling paginated results.
